@@ -33,6 +33,8 @@ Chan_List_ON = (3, 6, 11, 14)   #All Linear Actuators Switches
 
 def Move(Direction):
 
+    GPIO.OUT = "ON"
+    GPIO.IN = "OFF"
     #Variable Declaration
     North = "N"     #Linear Actuator A-D
     South = "S"     #Linear Actuator B-C
@@ -47,69 +49,69 @@ def Move(Direction):
     if Direction == North:
 
       #Retract
-      GPIO.setup(Chan_List_A, GPIO.OUT)
-      GPIO.setup(Chan_List_D, GPIO.OUT)
+      GPIO.setup(Chan_List_A, "ON")
+      GPIO.setup(Chan_List_D, "ON")
       #Extend
-      GPIO.setup(Chan_List_B, GPIO.IN)
-      GPIO.setup(Chan_List_C, GPIO.IN)
+      GPIO.setup(Chan_List_B, "OFF")
+      GPIO.setup(Chan_List_C, "OFF")
       time.sleep(1)
 
       #Closed the circuit
-      GPIO.setup(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, "ON")
 
       #Delay
       time.sleep(4)
 
-      return GPIO.output(pinList, GPIO.IN)
+      return GPIO.output(pinList, "OFF")
 
     if Direction == South:
 
       #Retract
-      GPIO.setup(Chan_List_B, GPIO.OUT)
-      GPIO.setup(Chan_List_C, GPIO.OUT)
+      GPIO.setup(Chan_List_B, "ON")
+      GPIO.setup(Chan_List_C, "ON")
       #Extend
-      GPIO.setup(Chan_List_A, GPIO.IN)
-      GPIO.setup(Chan_List_D, GPIO.IN)
+      GPIO.setup(Chan_List_A, "OFF")
+      GPIO.setup(Chan_List_D, "OFF")
       #Closed the circuit
-      GPIO.setup(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, "ON")
 
       #Delay
       time.sleep(4)
-      return GPIO.setup(pinList, GPIO.IN)
+      return GPIO.setup(pinList, "OFF")
 
     if Direction == East:
 
       #Retract
-      GPIO.setup(Chan_List_A, GPIO.OUT)
-      GPIO.setup(Chan_List_B, GPIO.OUT)
+      GPIO.setup(Chan_List_A, "ON")
+      GPIO.setup(Chan_List_B, "ON")
       #Extend
-      GPIO.setup(Chan_List_D, GPIO.IN)
-      GPIO.setup(Chan_List_C, GPIO.IN)
+      GPIO.setup(Chan_List_D, "OFF")
+      GPIO.setup(Chan_List_C, "OFF")
 
       #Closed the circuit
-      GPIO.setup(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, "ON")
 
       #Delay
       time.sleep(4)
       
-      return GPIO.setup(pinList, GPIO.IN)
+      return GPIO.setup(pinList, "OFF")
 
     if Direction == West:
 
       #Retract
-      GPIO.setup(Chan_List_C, GPIO.OUT)
-      GPIO.setup(Chan_List_D, GPIO.OUT)
+      GPIO.setup(Chan_List_C, "ON")
+      GPIO.setup(Chan_List_D, "ON")
       #Extend
-      GPIO.setup(Chan_List_B, GPIO.IN)
-      GPIO.setup(Chan_List_A, GPIO.IN)
+      GPIO.setup(Chan_List_B, "OFF")
+      GPIO.setup(Chan_List_A, "OFF")
 
       #Closed the circuit
-      GPIO.setup(Chan_List_ON, GPIO.IN)
+      GPIO.setup(Chan_List_ON, "ON")
 
       #Delay
       time.sleep(4)
 
-      return GPIO.setup(pinList, GPIO.IN)
+      return GPIO.setup(pinList, "OFF")
 
 '''
     #Corner Positions
