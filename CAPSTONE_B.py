@@ -29,6 +29,8 @@ Chan_List_D = (9, 10)        #Linear Actuator D
 
 Chan_List_ON = (3, 6, 11, 14)   #All Linear Actuators Switches
 
+Chan_List_ALL = pinList
+
 #Chan_List_ALL = (1, 2, 3, 6, 7, 8, 9, 10, 11, 14, 15, 16)
 
 def Move(Direction):
@@ -55,7 +57,7 @@ def Move(Direction):
       GPIO.setup(Chan_List_B, "OFF")
       GPIO.setup(Chan_List_C, "OFF")
       time.sleep(1)
-
+      print("Here")
       #Closed the circuit
       GPIO.setup(Chan_List_ON, "ON")
 
@@ -112,6 +114,11 @@ def Move(Direction):
       time.sleep(4)
 
       return GPIO.setup(pinList, "OFF")
+    
+    if Dirrection == Reset:
+      GPIO.setup(Chan_List_ALL, all)
+      time.sleep(10) #duration to 
+      return GPIO.cleanup()
 
 '''
     #Corner Positions
