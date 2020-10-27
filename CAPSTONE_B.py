@@ -15,7 +15,7 @@ import RPi.GPIO as GPIO
 import time
 
 
-pinList = [1, 2, 3, 6, 7, 8, 9, 10, 11, 14, 15, 16] #Relays
+pinList = [2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 15, 16] #Relays
 
 GPIO.setmode(GPIO.BCM)
 '''for i in pinList:
@@ -23,11 +23,11 @@ GPIO.setmode(GPIO.BCM)
   GPIO.output(i, 1)  #GPIO.output( pin#, High/Low)'''
 
 Chan_List_A = (7, 8)         #Linear Actuator A 
-Chan_List_B = (1, 2)         #Linear Actuator B
-Chan_List_C = (15, 16)       #Linear Actuator C
+Chan_List_B = (2, 3)         #Linear Actuator B #Relay 2-3
+Chan_List_C = (14, 15)       #Linear Actuator C
 Chan_List_D = (9, 10)        #Linear Actuator D
 
-Chan_List_ON = (3, 6, 11, 14)   #All Linear Actuators Switches
+Chan_List_ON = (4, 6, 11, 16)   #All Linear Actuators Switches #relay 1-6-11-16
 
 Chan_List_ALL = pinList
 
