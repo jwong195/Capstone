@@ -157,15 +157,12 @@ def main():
   East = "E"      #Linear Actuator A-B
   West = "W"      #Linear Actuator D-C
 
-  try:
-    Move(North)
-    time.sleep(2)
-    Move(South)
-    time.sleep(2)
-    Move(West)
-    time.sleep(2)
-    Move(East)
-#main()
+  List = ["N", "S", "W", "E"]
+  for i in list:
+    Move(i)
+    print(i)
+
+main()
 
     
 
