@@ -16,7 +16,7 @@ import time
 
 
 pinList = [2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 15, 16] #Relays
-
+#GPIO 4 = RELAY 1; there is no GPIO 1
 GPIO.setmode(GPIO.BCM)
 '''for i in pinList:
   GPIO.setup(i, GPIO.OUT)
@@ -31,7 +31,8 @@ Chan_List_ON = (4, 6, 11, 16)   #All Linear Actuators Switches #relay 1-6-11-16
 
 Chan_List_ALL = pinList
 
-#Chan_List_ALL = (1, 2, 3, 6, 7, 8, 9, 10, 11, 14, 15, 16)
+#Chan_List_ALL = (2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 15, 16)
+
 
 def Move(Direction):
 
@@ -47,6 +48,8 @@ def Move(Direction):
     North_West = "NW"       #Linear Actuator D
     South_East = "SE"       #Linear Actuator B
     South_West = "SW"       #Linear Actuator C
+
+    Reset = "Clear GPIO, End Program"
    
     if Direction == North:
 
@@ -115,7 +118,7 @@ def Move(Direction):
 
       return GPIO.setup(pinList, "OFF")
     
-    if Dirrection == Reset:
+    if Direction == Reset:
       GPIO.setup(Chan_List_ALL, all)
       time.sleep(10) #duration to 
       return GPIO.cleanup()
