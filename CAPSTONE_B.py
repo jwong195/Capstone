@@ -162,7 +162,7 @@ def main():
 
   List = ["N", "S", "W", "E"]
   for i in list:
-    Move(i)
+    Move(char(int(i)))
     print(i)
 
 main()
