@@ -38,7 +38,7 @@ def Move(Direction):
 
     #GPIO.OUT = ON
     #GPIO.IN = OFF
-    
+
     #Variable Declaration
     North = "N"     #Linear Actuator A-D
     South = "S"     #Linear Actuator B-C
@@ -51,8 +51,13 @@ def Move(Direction):
     South_West = "SW"       #Linear Actuator C
 
     Reset = "Clear GPIO, End Program"
-   
+
     if Direction == North:
+      #Reset Module
+      GPIO.setup(Chan_List_ALL)
+
+
+
 
       #Retract
       GPIO.setup(Chan_List_A, GPIO.OUT)
@@ -61,12 +66,11 @@ def Move(Direction):
       GPIO.setup(Chan_List_B, GPIO.IN)
       GPIO.setup(Chan_List_C, GPIO.IN)
       time.sleep(1)
-      print("Here")
       #Closed the circuit
       GPIO.setup(Chan_List_ON, GPIO.OUT)
 
       #Delay
-      time.sleep(4)
+      time.sleep(5)
 
       return GPIO.setup(pinList, GPIO.IN)
 
