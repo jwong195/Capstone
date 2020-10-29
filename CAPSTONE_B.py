@@ -56,14 +56,16 @@ def Move(Direction):
    #ON = 4
    #Corner = 1
   #Corner_ON = 2.5
-    '''Before executing any direction, the pannel will reset at the bottom then it'll execute'''
+   
+    '''Before executing any direction, the pannel will reset at the bottom'''
     #Reset position
     GPIO.setup(Chan_List_ON, GPIO.OUT)
     time.sleep(Reset)
     print('Reset")
     GPIO.cleanup()
     print(Direction)
-      
+    
+    #Moving the panel
     if Direction == North:
       
       #Retract
@@ -166,12 +168,16 @@ def main():
   South = "S"     #Linear Actuator B-C
   East = "E"      #Linear Actuator A-B
   West = "W"      #Linear Actuator D-C
+          
+  North_East = "NE"       #Linear Actuator A
+  North_West = "NW"       #Linear Actuator D
+  South_East = "SE"       #Linear Actuator B
+  South_West = "SW"       #Linear Actuator C
 
-  List = ["N", "S", "W", "E"]
+  List = ["N", "S", "W", "E", "NE", "NW", "SE", "SW"]
   for i in List:
     Move(i)
-    print(i)
-
+  GPIO.cleanup()
 main()
 
     
