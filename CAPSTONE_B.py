@@ -196,7 +196,6 @@ def Move(Direction):
       
       return GPIO.setup(pinList, GPIO.IN)
 
-
 def main():
   #Variable Declaration
   North = "N"     #Linear Actuator A-D
