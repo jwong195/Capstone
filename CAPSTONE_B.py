@@ -52,7 +52,7 @@ def Move(Direction):
     
     #Time Delay
     Reset = 6
-    Switch_ON = 0.2
+    Switch_ON = 0.1
     ON = 4
     Corner = 1
     Corner_ON = 2.5
@@ -139,7 +139,7 @@ def Move(Direction):
       #Retract
       GPIO.output(Chan_List_A, GPIO.IN)
       GPIO.output(Chan_List_C, GPIO.OUT)
-      time.sleep(0.01)
+      time.sleep(Switch_ON)
       GPIO.output(Chan_List_ON, GPIO.OUT)
     
       time.sleep(Corner)
@@ -149,18 +149,52 @@ def Move(Direction):
       time.sleep(Corner_ON)
  
       
-      return GPIO.output(pinList, 0)
+      return GPIO.setup(pinList, GPIO.IN)
 
     if Direction == North_West:
+      #Retract
+      GPIO.output(Chan_List_D, GPIO.IN)
+      GPIO.output(Chan_List_B, GPIO.OUT)
+      time.sleep(Switch_ON)
+      GPIO.output(Chan_List_ON, GPIO.OUT)
+    
+      time.sleep(Corner)
+      GPIO.output(Chan_List_C, GPIO.out)
+      time.sleep(Corner)
+      GPIO.output(Chan_List_A, GPIO.out)
+      time.sleep(Corner_ON)
       
-      return GPIO.output(pinList, 0)
+      return GPIO.setup(pinList, GPIO.IN)
     
     if Direction == South_East:
+      #Retract
+      GPIO.output(Chan_List_B, GPIO.IN)
+      GPIO.output(Chan_List_D, GPIO.OUT)
+      time.sleep(Switch_ON)
+      GPIO.output(Chan_List_ON, GPIO.OUT)
+    
+      time.sleep(Corner)
+      GPIO.output(Chan_List_A, GPIO.out)
+      time.sleep(Corner)
+      GPIO.output(Chan_List_C, GPIO.out)
+      time.sleep(Corner_ON)
       
-      return GPIO.output(pinList, 0)
+      return GPIO.setup(pinList, GPIO.IN)
+
     if Direction == South_West:
+      #Retract
+      GPIO.output(Chan_List_C, GPIO.IN)
+      GPIO.output(Chan_List_A, GPIO.OUT)
+      time.sleep(Switch_ON)
+      GPIO.output(Chan_List_ON, GPIO.OUT)
+    
+      time.sleep(Corner)
+      GPIO.output(Chan_List_D, GPIO.out)
+      time.sleep(Corner)
+      GPIO.output(Chan_List_B, GPIO.out)
+      time.sleep(Corner_ON)
       
-      return GPIO.output(pinList, 0)
+      return GPIO.setup(pinList, GPIO.IN)
 
 
 def main():
@@ -175,7 +209,7 @@ def main():
   South_East = "SE"       #Linear Actuator B
   South_West = "SW"       #Linear Actuator C
 
-  List = ["N", "S", "W", "E", "NE", "NW", "SE", 'SW']
+  List = ["N", "S", "W", "E", "NE", "NW", "SE", "SW"]
   for i in List:
     Move(i)
   GPIO.cleanup()
