@@ -7,7 +7,6 @@ D: Channels 9-10  Power: 11
 8 positions: North will be in the AD side and so on
 No matter what, channels 3-6-11-14 channels will turn on to operate
 Always two pairs will be activated
-
 When the function GPIO.OUT is written, the relay turns ON
 GPIO.IN turns the relay off
 '''
@@ -35,7 +34,8 @@ Chan_List_ALL = pinList
 
 
 def Move(Direction):
-
+    
+    
     #GPIO.OUT = ON
     #GPIO.IN = OFF
 
@@ -52,7 +52,7 @@ def Move(Direction):
     
     #Time Delay
     Reset = 6
-    Switch_ON = 0.1
+    Switch_ON = 0.25
     ON = 4
     Corner = 1
     Corner_ON = 2.5
@@ -62,10 +62,12 @@ def Move(Direction):
 
     GPIO.setup(Chan_List_ON, GPIO.OUT)
     time.sleep(Reset)
-    print('Reset")
-    GPIO.cleanup()
+    print('Reset')
+    GPIO.setup(Chan_List_ON, GPIO.IN)
+    time.sleep(1)
+    #GPIO.cleanup()
     print(Direction)
-
+    #GPIO.setmode(GPIO.BCM)
     #Moving the panel
     if Direction == North:
       
@@ -75,7 +77,7 @@ def Move(Direction):
       #Extend
       GPIO.setup(Chan_List_B, GPIO.IN)
       GPIO.setup(Chan_List_C, GPIO.IN)
-      time.sleep(Switch_On)
+      time.sleep(Switch_ON)
       #Closed the circuit
       GPIO.setup(Chan_List_ON, GPIO.OUT)
 
@@ -108,7 +110,7 @@ def Move(Direction):
       #Extend
       GPIO.setup(Chan_List_D, GPIO.IN)
       GPIO.setup(Chan_List_C, GPIO.IN)
-       time.sleep(Switch_ON)
+      time.sleep(Switch_ON)
       #Closed the circuit
       GPIO.setup(Chan_List_ON, GPIO.OUT)
 
@@ -137,15 +139,15 @@ def Move(Direction):
     #Corner Positions
     if Direction == North_East:
       #Retract
-      GPIO.output(Chan_List_A, GPIO.IN)
-      GPIO.output(Chan_List_C, GPIO.OUT)
+      GPIO.setup(Chan_List_A, GPIO.IN)
+      GPIO.setup(Chan_List_C, GPIO.OUT)
       time.sleep(Switch_ON)
-      GPIO.output(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, GPIO.OUT)
     
       time.sleep(Corner)
-      GPIO.output(Chan_List_B, GPIO.out)
+      GPIO.setup(Chan_List_B, GPIO.OUT)
       time.sleep(Corner)
-      GPIO.output(Chan_List_D, GPIO.out)
+      GPIO.setup(Chan_List_D, GPIO.OUT)
       time.sleep(Corner_ON)
  
       
@@ -153,45 +155,45 @@ def Move(Direction):
 
     if Direction == North_West:
       #Retract
-      GPIO.output(Chan_List_D, GPIO.IN)
-      GPIO.output(Chan_List_B, GPIO.OUT)
+      GPIO.setup(Chan_List_D, GPIO.IN)
+      GPIO.setup(Chan_List_B, GPIO.OUT)
       time.sleep(Switch_ON)
-      GPIO.output(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, GPIO.OUT)
     
       time.sleep(Corner)
-      GPIO.output(Chan_List_C, GPIO.out)
+      GPIO.setup(Chan_List_C, GPIO.OUT)
       time.sleep(Corner)
-      GPIO.output(Chan_List_A, GPIO.out)
+      GPIO.setup(Chan_List_A, GPIO.OUT)
       time.sleep(Corner_ON)
       
       return GPIO.setup(pinList, GPIO.IN)
     
     if Direction == South_East:
       #Retract
-      GPIO.output(Chan_List_B, GPIO.IN)
-      GPIO.output(Chan_List_D, GPIO.OUT)
+      GPIO.setup(Chan_List_B, GPIO.IN)
+      GPIO.setup(Chan_List_D, GPIO.OUT)
       time.sleep(Switch_ON)
-      GPIO.output(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, GPIO.OUT)
     
       time.sleep(Corner)
-      GPIO.output(Chan_List_A, GPIO.out)
+      GPIO.setup(Chan_List_A, GPIO.OUT)
       time.sleep(Corner)
-      GPIO.output(Chan_List_C, GPIO.out)
+      GPIO.setup(Chan_List_C, GPIO.OUT)
       time.sleep(Corner_ON)
       
       return GPIO.setup(pinList, GPIO.IN)
 
     if Direction == South_West:
       #Retract
-      GPIO.output(Chan_List_C, GPIO.IN)
-      GPIO.output(Chan_List_A, GPIO.OUT)
+      GPIO.setup(Chan_List_C, GPIO.IN)
+      GPIO.setup(Chan_List_A, GPIO.OUT)
       time.sleep(Switch_ON)
-      GPIO.output(Chan_List_ON, GPIO.OUT)
+      GPIO.setup(Chan_List_ON, GPIO.OUT)
     
       time.sleep(Corner)
-      GPIO.output(Chan_List_D, GPIO.out)
+      GPIO.setup(Chan_List_D, GPIO.OUT)
       time.sleep(Corner)
-      GPIO.output(Chan_List_B, GPIO.out)
+      GPIO.setup(Chan_List_B, GPIO.OUT)
       time.sleep(Corner_ON)
       
       return GPIO.setup(pinList, GPIO.IN)
@@ -220,19 +222,13 @@ main()
 # init list with pin numbers
 '''
 pinList = [2, 3, 4, 17, 27, 22, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20]
-
 # loop through pins and set mode and state to 'low'
-
 for i in pinList:
     GPIO.setup(i, GPIO.OUT)
     GPIO.output(i, GPIO.HIGH)
-
 # time to sleep between operations in the main loop
-
 SleepTimeL = 2
-
 # main loop
-
 try:
   GPIO.output(2, GPIO.LOW)
   print ("ONE")
@@ -284,10 +280,8 @@ try:
   time.sleep(SleepTimeL);
   GPIO.cleanup()
   print ("Good bye!")
-
 # End program cleanly with keyboard
 except KeyboardInterrupt:
   print ("  Quit")
-
   # Reset GPIO settings
   GPIO.cleanup() '''
